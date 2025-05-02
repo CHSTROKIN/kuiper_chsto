@@ -1,4 +1,4 @@
-# Install script for directory: /home/haotian/kuiper_chsto/test
+# Install script for directory: /home/haotian/kuiper_chsto/demo
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
