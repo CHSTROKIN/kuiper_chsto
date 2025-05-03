@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="llama_infer"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\..\;CMake Files\..\anaconda3\;CMake Files\..\anaconda3\lib\;CMake Files\..\anaconda3\lib\cmake\;CMake Files\..\anaconda3\lib\cmake\GTest\;CMake Files\..\anaconda3\lib\cmake\glog\;CMake Files\..\anaconda3\lib\cmake\gflags\;CMake Files\test\;CMake Files\demo\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/haotian/kuiper_chsto"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="llama">
+				<Option output="/home/haotian/kuiper_chsto/lib/libllama.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haotian/kuiper_chsto"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGFLAGS_IS_A_DLL=0"/>
+					<Add directory="/home/haotian/kuiper_chsto/include"/>
+					<Add directory="/usr/local/cuda/targets/x86_64-linux/include"/>
+					<Add directory="/home/haotian/anaconda3/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 llama"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="llama/fast">
+				<Option output="/home/haotian/kuiper_chsto/lib/libllama.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haotian/kuiper_chsto"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGFLAGS_IS_A_DLL=0"/>
+					<Add directory="/home/haotian/kuiper_chsto/include"/>
+					<Add directory="/usr/local/cuda/targets/x86_64-linux/include"/>
+					<Add directory="/home/haotian/anaconda3/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 llama/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/haotian/kuiper_chsto"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/haotian/kuiper_chsto"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_llm">
+				<Option output="/home/haotian/kuiper_chsto/test/test_llm" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haotian/kuiper_chsto/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGFLAGS_IS_A_DLL=0"/>
+					<Add option="-DGTEST_LINKED_AS_SHARED_LIBRARY=1"/>
+					<Add directory="/home/haotian/kuiper_chsto/test/../kuiper/include"/>
+					<Add directory="/home/haotian/kuiper_chsto/include"/>
+					<Add directory="/usr/local/cuda/targets/x86_64-linux/include"/>
+					<Add directory="/home/haotian/anaconda3/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/test/Makefile&quot;  VERBOSE=1 test_llm"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_llm/fast">
+				<Option output="/home/haotian/kuiper_chsto/test/test_llm" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haotian/kuiper_chsto/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGFLAGS_IS_A_DLL=0"/>
+					<Add option="-DGTEST_LINKED_AS_SHARED_LIBRARY=1"/>
+					<Add directory="/home/haotian/kuiper_chsto/test/../kuiper/include"/>
+					<Add directory="/home/haotian/kuiper_chsto/include"/>
+					<Add directory="/usr/local/cuda/targets/x86_64-linux/include"/>
+					<Add directory="/home/haotian/anaconda3/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/test/Makefile&quot;  VERBOSE=1 test_llm/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="llama_infer">
+				<Option output="/home/haotian/kuiper_chsto/demo/llama_infer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haotian/kuiper_chsto/demo"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGFLAGS_IS_A_DLL=0"/>
+					<Add directory="/home/haotian/kuiper_chsto/include"/>
+					<Add directory="/usr/local/cuda/targets/x86_64-linux/include"/>
+					<Add directory="/home/haotian/anaconda3/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/demo/Makefile&quot;  VERBOSE=1 llama_infer"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/demo/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/demo/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/demo/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="llama_infer/fast">
+				<Option output="/home/haotian/kuiper_chsto/demo/llama_infer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haotian/kuiper_chsto/demo"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGFLAGS_IS_A_DLL=0"/>
+					<Add directory="/home/haotian/kuiper_chsto/include"/>
+					<Add directory="/usr/local/cuda/targets/x86_64-linux/include"/>
+					<Add directory="/home/haotian/anaconda3/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/demo/Makefile&quot;  VERBOSE=1 llama_infer/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/demo/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/demo/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/haotian/kuiper_chsto/demo/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/haotian/kuiper_chsto/demo/main.cpp">
+			<Option target="llama_infer"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/base/alloc.cpp">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/base/alloc_cpu.cpp">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/base/alloc_cu.cpp">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/base/base.cpp">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/base/buffer.cpp">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/model/model.cpp">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/op/kernel.cpp">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/op/kernels/cpu/add_kernel.cpp">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/op/kernels/cpu/add_kernel.h">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/op/kernels/cuda/add_kernel.cu">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/op/kernels/kernels_interfaces.cpp">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/sampler/sampler.cpp">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/source/tensor/tensor.cpp">
+			<Option target="llama"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/test/optimized/test_allocator.cpp">
+			<Option target="test_llm"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/test/test_cu/test_cu_add.cpp">
+			<Option target="test_llm"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/test/test_main.cpp">
+			<Option target="test_llm"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/test/utils.cu">
+			<Option target="test_llm"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/cmake/cuda.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/GTest/GTestConfig.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\GTest\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/GTest/GTestConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\GTest\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/GTest/GTestTargets-noconfig.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\GTest\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/GTest/GTestTargets-release.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\GTest\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/GTest/GTestTargets.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\GTest\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/glog/glog-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\glog\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/glog/glog-config.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\glog\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/glog/glog-modules.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\glog\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/glog/glog-targets-release.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\glog\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/glog/glog-targets.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\glog\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/gflags/gflags-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\gflags\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/gflags/gflags-config.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\gflags\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/gflags/gflags-nonamespace-targets-noconfig.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\gflags\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/../anaconda3/lib/cmake/gflags/gflags-nonamespace-targets.cmake">
+			<Option virtualFolder="CMake Files\..\anaconda3\lib\cmake\gflags\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\"/>
+		</Unit>
+		<Unit filename="/home/haotian/kuiper_chsto/demo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\demo\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
