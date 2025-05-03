@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DGFLAGS_IS_A_DLL=0
 
-CXX_INCLUDES = -I/home/haotian/kuiper_chsto/kuiper/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include
+CXX_INCLUDES = -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include
 
 CXX_FLAGS = -std=gnu++17
 

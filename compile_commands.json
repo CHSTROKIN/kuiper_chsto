@@ -1,47 +1,67 @@
 [
 {
   "directory": "/home/haotian/kuiper_chsto",
-  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/kuiper/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/tensor/tensor.cpp.o -c /home/haotian/kuiper_chsto/source/tensor/tensor.cpp",
+  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/tensor/tensor.cpp.o -c /home/haotian/kuiper_chsto/source/tensor/tensor.cpp",
   "file": "/home/haotian/kuiper_chsto/source/tensor/tensor.cpp"
 },
 {
   "directory": "/home/haotian/kuiper_chsto",
-  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/kuiper/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/base/base.cpp.o -c /home/haotian/kuiper_chsto/source/base/base.cpp",
+  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/base/alloc.cpp.o -c /home/haotian/kuiper_chsto/source/base/alloc.cpp",
+  "file": "/home/haotian/kuiper_chsto/source/base/alloc.cpp"
+},
+{
+  "directory": "/home/haotian/kuiper_chsto",
+  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/base/alloc_cpu.cpp.o -c /home/haotian/kuiper_chsto/source/base/alloc_cpu.cpp",
+  "file": "/home/haotian/kuiper_chsto/source/base/alloc_cpu.cpp"
+},
+{
+  "directory": "/home/haotian/kuiper_chsto",
+  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/base/alloc_cu.cpp.o -c /home/haotian/kuiper_chsto/source/base/alloc_cu.cpp",
+  "file": "/home/haotian/kuiper_chsto/source/base/alloc_cu.cpp"
+},
+{
+  "directory": "/home/haotian/kuiper_chsto",
+  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/base/base.cpp.o -c /home/haotian/kuiper_chsto/source/base/base.cpp",
   "file": "/home/haotian/kuiper_chsto/source/base/base.cpp"
 },
 {
   "directory": "/home/haotian/kuiper_chsto",
-  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/kuiper/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/op/kernel.cpp.o -c /home/haotian/kuiper_chsto/source/op/kernel.cpp",
+  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/base/buffer.cpp.o -c /home/haotian/kuiper_chsto/source/base/buffer.cpp",
+  "file": "/home/haotian/kuiper_chsto/source/base/buffer.cpp"
+},
+{
+  "directory": "/home/haotian/kuiper_chsto",
+  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/op/kernel.cpp.o -c /home/haotian/kuiper_chsto/source/op/kernel.cpp",
   "file": "/home/haotian/kuiper_chsto/source/op/kernel.cpp"
 },
 {
   "directory": "/home/haotian/kuiper_chsto",
-  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/kuiper/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/model/model.cpp.o -c /home/haotian/kuiper_chsto/source/model/model.cpp",
+  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/model/model.cpp.o -c /home/haotian/kuiper_chsto/source/model/model.cpp",
   "file": "/home/haotian/kuiper_chsto/source/model/model.cpp"
 },
 {
   "directory": "/home/haotian/kuiper_chsto",
-  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/kuiper/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/sampler/sampler.cpp.o -c /home/haotian/kuiper_chsto/source/sampler/sampler.cpp",
+  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -Dllama_EXPORTS -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -fPIC -std=gnu++17 -o CMakeFiles/llama.dir/source/sampler/sampler.cpp.o -c /home/haotian/kuiper_chsto/source/sampler/sampler.cpp",
   "file": "/home/haotian/kuiper_chsto/source/sampler/sampler.cpp"
 },
 {
   "directory": "/home/haotian/kuiper_chsto/test",
-  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -I/home/haotian/kuiper_chsto/test/../kuiper/include -I/home/haotian/kuiper_chsto/kuiper/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -std=gnu++17 -o CMakeFiles/test_llm.dir/test_main.cpp.o -c /home/haotian/kuiper_chsto/test/test_main.cpp",
+  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -I/home/haotian/kuiper_chsto/test/../kuiper/include -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -std=gnu++17 -o CMakeFiles/test_llm.dir/test_main.cpp.o -c /home/haotian/kuiper_chsto/test/test_main.cpp",
   "file": "/home/haotian/kuiper_chsto/test/test_main.cpp"
 },
 {
   "directory": "/home/haotian/kuiper_chsto/test",
-  "command": "/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DGFLAGS_IS_A_DLL=0 -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -I/home/haotian/kuiper_chsto/test/../kuiper/include -I/home/haotian/kuiper_chsto/kuiper/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem=/home/haotian/anaconda3/include  --generate-code=arch=compute_89,code=[compute_89,sm_89] -std=c++14 -x cu -dc /home/haotian/kuiper_chsto/test/utils.cu -o CMakeFiles/test_llm.dir/utils.cu.o",
+  "command": "/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DGFLAGS_IS_A_DLL=0 -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -I/home/haotian/kuiper_chsto/test/../kuiper/include -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem=/home/haotian/anaconda3/include  --generate-code=arch=compute_89,code=[compute_89,sm_89] -std=c++14 -x cu -dc /home/haotian/kuiper_chsto/test/utils.cu -o CMakeFiles/test_llm.dir/utils.cu.o",
   "file": "/home/haotian/kuiper_chsto/test/utils.cu"
 },
 {
   "directory": "/home/haotian/kuiper_chsto/test",
-  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -I/home/haotian/kuiper_chsto/test/../kuiper/include -I/home/haotian/kuiper_chsto/kuiper/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -std=gnu++17 -o CMakeFiles/test_llm.dir/optimized/test_allocator.cpp.o -c /home/haotian/kuiper_chsto/test/optimized/test_allocator.cpp",
+  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -I/home/haotian/kuiper_chsto/test/../kuiper/include -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -std=gnu++17 -o CMakeFiles/test_llm.dir/optimized/test_allocator.cpp.o -c /home/haotian/kuiper_chsto/test/optimized/test_allocator.cpp",
   "file": "/home/haotian/kuiper_chsto/test/optimized/test_allocator.cpp"
 },
 {
   "directory": "/home/haotian/kuiper_chsto/demo",
-  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -I/home/haotian/kuiper_chsto/kuiper/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -std=gnu++17 -o CMakeFiles/llama_infer.dir/main.cpp.o -c /home/haotian/kuiper_chsto/demo/main.cpp",
+  "command": "/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include -std=gnu++17 -o CMakeFiles/llama_infer.dir/main.cpp.o -c /home/haotian/kuiper_chsto/demo/main.cpp",
   "file": "/home/haotian/kuiper_chsto/demo/main.cpp"
 }
 ]

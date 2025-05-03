@@ -1,5 +1,5 @@
 #include<iostream>
-int main(void) {
+int kernel(void) {
     std::cout<<"this is the definition of kernel file"<<std::endl;
     return 0;
 }

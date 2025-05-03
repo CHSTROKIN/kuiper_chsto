@@ -71,7 +71,7 @@ target_link_libraries(llama sentencepiece glog::glog gtest gtest_main pthread cu
 target_link_directories(llama PUBLIC ${CMAKE_CUDA_COMPILER_LIBRARY_ROOT}/lib64)
 
 target_include_directories(llama PUBLIC ${glog_INCLUDE_DIR})
-target_include_directories(llama PUBLIC ${PROJECT_SOURCE_DIR}/kuiper/include)
+target_include_directories(llama PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_include_directories(llama PUBLIC ${Armadillo_INCLUDE_DIR})
 target_include_directories(llama PUBLIC ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES})
 

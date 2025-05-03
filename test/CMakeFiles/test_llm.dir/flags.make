@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 CUDA_DEFINES = -DGFLAGS_IS_A_DLL=0 -DGTEST_LINKED_AS_SHARED_LIBRARY=1
 
-CUDA_INCLUDES = -I/home/haotian/kuiper_chsto/test/../kuiper/include -I/home/haotian/kuiper_chsto/kuiper/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem=/home/haotian/anaconda3/include
+CUDA_INCLUDES = -I/home/haotian/kuiper_chsto/test/../kuiper/include -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem=/home/haotian/anaconda3/include
 
 CUDA_FLAGS =  --generate-code=arch=compute_89,code=[compute_89,sm_89] -std=c++14
 
 CXX_DEFINES = -DGFLAGS_IS_A_DLL=0 -DGTEST_LINKED_AS_SHARED_LIBRARY=1
 
-CXX_INCLUDES = -I/home/haotian/kuiper_chsto/test/../kuiper/include -I/home/haotian/kuiper_chsto/kuiper/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include
+CXX_INCLUDES = -I/home/haotian/kuiper_chsto/test/../kuiper/include -I/home/haotian/kuiper_chsto/include -I/usr/local/cuda/targets/x86_64-linux/include -isystem /home/haotian/anaconda3/include
 
 CXX_FLAGS = -std=gnu++17
 

@@ -9,7 +9,7 @@ int main()
   {
     cudaDeviceProp prop;
     if (cudaSuccess == cudaGetDeviceProperties(&prop, device))
-      std::printf("%d.%d ", prop.major, prop.minor);
+      std::printf("%d.%d \n", prop.major, prop.minor);
   }
   return 0;
 }
