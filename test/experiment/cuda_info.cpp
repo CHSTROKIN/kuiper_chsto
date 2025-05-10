@@ -1,6 +1,3 @@
-//
-// Created by 18446 on 2025/9/20.
-//
 #include <iostream>
 #include <cuda_runtime.h>
 
