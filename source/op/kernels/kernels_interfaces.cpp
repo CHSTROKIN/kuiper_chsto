@@ -10,6 +10,7 @@
 #include "cpu/softmax_kernel.h"
 #include "cpu/scale_kernel.h"
 #include "cpu/scale_sum_kernel.h"
+#include "cpu/swiglu_kernel.h"
 
 #include "cuda/add_kernel.cuh"
 #include "cuda/emb_kernel.cuh"
@@ -17,6 +18,7 @@
 #include "cuda/mha_kernel.cuh"
 #include "cuda/rmsnorm_kernel.cuh"
 #include "cuda/rope_kernel.cuh"
+#include "cuda/swiglu_kernel.cuh"
 
 namespace kernel {
 AddKernel get_add_kernel(base::DeviceType device_type) {
@@ -111,4 +113,16 @@ ScaleKernel get_scale_kernel(base::DeviceType device_type) {
         return nullptr;
     }
 }
+
+SwigluKernel get_swiglu_kernel(base::DeviceType device_type, void* stream) {
+  if (device_type == base::DeviceType::kDeviceCPU) {
+    return swiglu_kernel_cpu;
+  } else if (device_type == base::DeviceType::kDeviceCUDA) {
+    return swiglu_kernel_cu;
+  } else {
+    LOG(FATAL) << "Unknown device type for get a swiglu kernel.";
+    return nullptr;
+  }
+}
+
 }  // namespace kernel
