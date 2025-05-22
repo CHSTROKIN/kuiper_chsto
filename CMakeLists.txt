@@ -47,7 +47,22 @@ if(USE_CPM)
     VERSION 0.2.0
   )
   find_package(sentencepiece REQUIRED)
-
+  CPMAddPackage(
+      NAME absl
+      GITHUB_REPOSITORY abseil/abseil-cpp
+      GIT_TAG 20240722.0
+      OPTIONS "BUILD_TESTING Off" "ABSL_PROPAGATE_CXX_STD ON" "ABSL_ENABLE_INSTALL ON"
+  )
+  CPMAddPackage(
+      NAME re2
+      GITHUB_REPOSITORY google/re2
+      GIT_TAG 2024-07-02
+  )
+  CPMAddPackage(
+      NAME nlohmann_json
+      GITHUB_REPOSITORY nlohmann/json
+      VERSION 3.11.3
+  )
 endif()
 
 # ---------------------------------
