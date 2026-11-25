@@ -539,9 +539,10 @@ Things worth noticing:
 * **The KV cache is the model's memory of the past.** Each step writes one row per
   layer. Positions `0..pos` are read by attention.
 * **Weights are random** (uniform ±1/√in_features, a typical initialization), so the
-  generated ids are meaningless. To run a real model you would need to fill `Weights`
-  from a checkpoint (the order is the same as HF's `model.layers.N.self_attn.q_proj`
-  etc.) and add a tokenizer. The kernels would not change.
+  generated ids are meaningless. The `chat` program runs the same model
+  (`include/llama3/model.h`) with real weights: `src/checkpoint.cpp` fills `Weights`
+  from a HF checkpoint and `src/tokenizer.cpp` handles the text. The kernels are
+  unchanged (see [llama3_kernels/README.md](../llama3_kernels/README.md#0-chat-with-a-real-model)).
 * The program first runs greedy decoding on the CPU. It then feeds **the same tokens**
   to the GPU, so the logits of every step can be compared.
 

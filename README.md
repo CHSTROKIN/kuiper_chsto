@@ -42,7 +42,7 @@ make -j$(nproc)
 
 ### Llama 3 Kernels (CPU vs CUDA)
 
-A self-contained set of readable Llama 3 kernels, with tests and a CPU vs GPU benchmark, lives in [`llama3_kernels/`](llama3_kernels/README.md):
+A self-contained set of readable Llama 3 kernels, with tests, a CPU vs GPU benchmark and a terminal chat program, lives in [`llama3_kernels/`](llama3_kernels/README.md):
 
 ```bash
 cmake -S llama3_kernels -B build_kernels -DCMAKE_BUILD_TYPE=Release
@@ -50,6 +50,7 @@ cmake --build build_kernels -j
 ./build_kernels/test_kernels                       # correctness: CUDA vs CPU
 ./build_kernels/bench_kernels --model 1b           # per-kernel CPU vs GPU timing
 ./build_kernels/llama3_forward --model 1b          # full Llama 3 forward pass on both
+./build_kernels/chat                               # chat with Llama 3.2 1B (download weights first)
 ```
 
 ### Running the Demo

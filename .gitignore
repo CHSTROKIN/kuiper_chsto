@@ -26,3 +26,6 @@ demo/llama_infer
 test/test_llm
 test/build/
 test/CMakeFiles/
+
+# Downloaded model weights
+models/

@@ -37,6 +37,10 @@ find_package(OpenMP)
 # ---- the kernel library ------------------------------------------------------
 add_library(llama3_kernels STATIC
   src/rope_frequencies.cpp
+  # loading real models
+  src/json.cpp
+  src/checkpoint.cpp
+  src/tokenizer.cpp
   # CPU kernels
   src/cpu/embedding.cpp
   src/cpu/rmsnorm.cpp
@@ -72,7 +76,7 @@ if(LLAMA3_NATIVE_CPU)
 endif()
 
 # ---- programs ----------------------------------------------------------------
-foreach(app test_kernels bench_kernels llama3_forward)
+foreach(app test_kernels bench_kernels llama3_forward chat)
   add_executable(${app} apps/${app}.cpp)
   target_link_libraries(${app} PRIVATE llama3_kernels)
 endforeach()
