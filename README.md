@@ -40,6 +40,18 @@ cmake .. -DUSE_CPM=ON
 make -j$(nproc)
 ```
 
+### Llama 3 Kernels (CPU vs CUDA)
+
+A self-contained set of readable Llama 3 kernels, with tests and a CPU vs GPU benchmark, lives in [`llama3_kernels/`](llama3_kernels/README.md):
+
+```bash
+cmake -S llama3_kernels -B build_kernels -DCMAKE_BUILD_TYPE=Release
+cmake --build build_kernels -j
+./build_kernels/test_kernels                       # correctness: CUDA vs CPU
+./build_kernels/bench_kernels --model 1b           # per-kernel CPU vs GPU timing
+./build_kernels/llama3_forward --model 1b          # full Llama 3 forward pass on both
+```
+
 ### Running the Demo
 
 ```bash
@@ -98,6 +110,8 @@ Kuiper-Chsto is optimized for inference performance:
 
 ## Documentation
 
+- [Llama 3 Kernels Guide](docs/KERNELS.md) - Every Llama 3 kernel explained (CPU + CUDA), with CPU vs GPU performance analysis
+- [llama3_kernels/README.md](llama3_kernels/README.md) - How to build and run the kernel tests, benchmark and forward-pass demo
 - [Architecture Guide](docs/ARCHITECTURE.md) - Technical architecture overview
 - [API Reference](docs/API_REFERENCE.md) - Detailed API documentation
 - [Build Guide(TODO)](docs/BUILD_GUIDE.md) - Complete build instructions

@@ -1,0 +1,194 @@
+# llama3_kernels — readable CPU + CUDA kernels for Llama 3 inference
+
+This folder contains **every computation needed to generate text with Llama 3**,
+written twice: once for the CPU and once for an NVIDIA GPU (CUDA). The two versions
+have the same function names and arguments, so you can read them side by side.
+
+The code is written to be **easy to read**, not as fast as possible. Each file is
+short and starts with a comment that explains the math and, for CUDA, which thread
+computes what.
+
+The module is **self-contained**. It needs only a C++17 compiler, the CUDA toolkit,
+and optionally OpenMP. It does not depend on the rest of the repository, which does
+not currently build (see [docs/KERNELS.md](../docs/KERNELS.md#10-relation-to-the-rest-of-the-repository)).
+
+For a detailed explanation of every kernel, see **[docs/KERNELS.md](../docs/KERNELS.md)**.
+
+---
+
+## 1. What is in here
+
+```
+llama3_kernels/
+├── CMakeLists.txt
+├── include/llama3/
+│   ├── config.h              model sizes: tiny, Llama 3.2 1B, Llama 3 8B
+│   ├── cpu_kernels.h         declarations of the CPU kernels   (namespace llama3::cpu)
+│   ├── cuda_kernels.h        declarations of the CUDA kernels  (namespace llama3::cuda)
+│   ├── cuda_utils.h          CUDA_CHECK, ceil_div, DeviceBuffer (GPU array that frees itself)
+│   └── rope_frequencies.h    RoPE frequency table (+ Llama 3.1 long-context scaling)
+├── src/
+│   ├── rope_frequencies.cpp
+│   ├── cpu/                  one .cpp per kernel
+│   │   embedding  rmsnorm  matmul  rope  softmax  attention  swiglu  add  argmax
+│   └── cuda/                 one .cu per kernel (same names) + block_reduce.cuh
+└── apps/
+    ├── app_utils.h           random numbers, timers, result comparison, arg parsing
+    ├── test_kernels.cpp      correctness tests (CPU vs hand-computed, CUDA vs CPU)
+    ├── bench_kernels.cpp     speed of every kernel, CPU vs CUDA, at real model sizes
+    └── llama3_forward.cpp    a complete Llama 3 model built from the kernels, run on both
+```
+
+| Kernel      | What it does in Llama 3                                  | CPU file              | CUDA file              |
+|-------------|----------------------------------------------------------|-----------------------|------------------------|
+| `embedding` | token id → vector (copy one row of the table)            | `src/cpu/embedding.cpp` | `src/cuda/embedding.cu` |
+| `rmsnorm`   | normalize before attention / FFN / output                | `src/cpu/rmsnorm.cpp`   | `src/cuda/rmsnorm.cu`   |
+| `matmul`    | every linear layer: Wq Wk Wv Wo, gate/up/down, lm head   | `src/cpu/matmul.cpp`    | `src/cuda/matmul.cu`    |
+| `rope`      | rotate q and k by their position                         | `src/cpu/rope.cpp`      | `src/cuda/rope.cu`      |
+| `softmax`   | scores → probabilities (used inside attention)           | `src/cpu/softmax.cpp`   | `src/cuda/softmax.cu`   |
+| `attention` | causal grouped-query attention over the KV cache         | `src/cpu/attention.cpp` | `src/cuda/attention.cu` |
+| `swiglu`    | activation of the feed-forward block                     | `src/cpu/swiglu.cpp`    | `src/cuda/swiglu.cu`    |
+| `add`       | residual connections                                     | `src/cpu/add.cpp`       | `src/cuda/add.cu`       |
+| `argmax`    | greedy sampling: pick the most likely next token         | `src/cpu/argmax.cpp`    | `src/cuda/argmax.cu`    |
+
+---
+
+## 2. Requirements
+
+* Linux (tested on Ubuntu 22.04 under WSL2) with an NVIDIA GPU and driver
+* CUDA toolkit with `nvcc` (tested with 12.6)
+* CMake ≥ 3.18 and a C++17 compiler (tested with g++ 11.4)
+* OpenMP (part of gcc; optional — without it the CPU kernels use one thread)
+
+If CMake cannot find `nvcc`, pass it explicitly:
+`-DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc`.
+
+---
+
+## 3. Build
+
+From the repository root:
+
+```bash
+cmake -S llama3_kernels -B build_kernels -DCMAKE_BUILD_TYPE=Release
+cmake --build build_kernels -j
+```
+
+This produces three programs in `build_kernels/`: `test_kernels`, `bench_kernels`
+and `llama3_forward`.
+
+Build options:
+
+| Option | Default | Meaning |
+|---|---|---|
+| `-DCMAKE_CUDA_ARCHITECTURES=89` | `75 80 86 89` | GPU generations to compile for. Building only your own makes the build faster (RTX 20xx = 75, 30xx = 86, 40xx = 89). |
+| `-DLLAMA3_NATIVE_CPU=OFF` | `ON` | Turns off `-march=native`. Use `OFF` if the binary must run on another CPU. |
+
+---
+
+## 4. Run
+
+### 4.1 Correctness tests
+
+```bash
+./build_kernels/test_kernels          # or: ctest --test-dir build_kernels
+```
+
+The test checks the CPU kernels against hand-computed answers. It then runs every CUDA
+kernel on random data and compares the result with the CPU version. Sizes include odd
+ones, such as rows that are not a multiple of the block size. Expected ending:
+
+```
+40 passed, 0 failed
+```
+
+### 4.2 Per-kernel benchmark (CPU vs GPU)
+
+```bash
+./build_kernels/bench_kernels --model 1b        # Llama 3.2 1B sizes (default)
+./build_kernels/bench_kernels --model 8b        # Llama 3 8B sizes (needs ~5 GB RAM, ~3 GB GPU)
+./build_kernels/bench_kernels --model 1b --ctx 2048 --prefill 64 --iters 50
+OMP_NUM_THREADS=1 ./build_kernels/bench_kernels # single-threaded CPU
+```
+
+| Flag | Default | Meaning |
+|---|---|---|
+| `--model` | `1b` | `tiny`, `1b` or `8b` — which model's tensor sizes to use |
+| `--ctx` | `512` | number of tokens already in the KV cache (affects `attention`, `softmax`, `rope`) |
+| `--prefill` | `32` | number of tokens for the `matmul_gate(prefill)` row (M > 1) |
+| `--iters` | `20` | repetitions per kernel (the CPU stops early after ~3 s) |
+
+For each kernel the benchmark prints:
+
+* the average time on the CPU and on the GPU,
+* the effective memory bandwidth, i.e. bytes the kernel must read and write ÷ time,
+* the speed-up,
+* the relative difference between the CPU and GPU results.
+
+After that it combines the per-kernel times into an estimate of the cost of one
+generated token, and shows which kernels dominate.
+
+### 4.3 Full Llama 3 forward pass (CPU vs GPU)
+
+```bash
+./build_kernels/llama3_forward --model tiny                 # instant
+./build_kernels/llama3_forward --model 1b --steps 32        # 4.9 GB of weights on CPU and GPU
+./build_kernels/llama3_forward --model 8b --layers 2        # 8B layer sizes, only 2 layers (fits 8 GB GPUs)
+./build_kernels/llama3_forward --model 1b --device cuda     # GPU only
+```
+
+| Flag | Default | Meaning |
+|---|---|---|
+| `--model` | `tiny` | `tiny`, `1b` or `8b` |
+| `--layers` | model's own | override the number of transformer layers (to fit in memory) |
+| `--steps` | `32` | number of tokens to generate |
+| `--device` | `both` | `both`, `cpu` or `cuda` |
+| `--seed` | `1` | seed for the random weights |
+
+The program builds a model with **random weights**, so the generated token ids have no
+meaning. It runs greedy decoding on the CPU, then feeds the same tokens to the GPU
+model. It then reports:
+
+* milliseconds per token and tokens per second for each device,
+* whether both devices predicted the same next token at every step,
+* the largest relative difference between the CPU and GPU logits.
+
+### 4.4 CPU threads
+
+If `OMP_NUM_THREADS` is not set, the programs use **half of the logical CPUs**, which
+is the number of physical cores on CPUs with hyper-threading. These kernels are limited
+by memory bandwidth, so hyper-threads do not help. On the test machine, an 8-core /
+16-thread laptop under WSL2, using all 16 threads was up to 3× *slower*. The reason is
+that every thread waits at the end of each short parallel loop for the slowest one.
+
+---
+
+## 5. Results on the development machine
+
+AMD Ryzen 9 7940H (8 cores, DDR5), NVIDIA RTX 4060 Laptop GPU (8 GB, ~256 GB/s),
+WSL2, 8 CPU threads, fp32. Laptop measurements vary by about ±30% from run to run.
+
+**Full forward pass** (`llama3_forward`, random weights, 32 generated tokens):
+
+| Model shapes | CPU ms/token | GPU ms/token | GPU speed-up | Same tokens | Max logits rel. error |
+|---|---|---|---|---|---|
+| tiny (4 layers, dim 256) | 0.54 | 0.76 | **0.7×** (CPU wins) | 32/32 | 5.9e-07 |
+| Llama 3.2 1B (16 layers) | 120.7 | 22.2 | **5.4×** | 32/32 | 1.2e-06 |
+| Llama 3 8B, 2 layers | 92.1 | 17.4 | **5.3×** | 16/16 | 1.3e-06 |
+| Llama 3.2 1B, CPU 1 thread | 162.6 | – | – | – | – |
+
+**Selected kernels** (`bench_kernels --model 8b`):
+
+| Kernel | Shape | CPU ms | GPU ms | Speed-up | GPU GB/s |
+|---|---|---|---|---|---|
+| matmul (FFN gate/up) | 1×14336×4096 | 5.61 | 0.95 | 5.9× | 248 |
+| matmul (lm head) | 1×128256×4096 | 50.2 | 9.41 | 5.3× | 223 |
+| matmul, 32 tokens (prefill) | 32×14336×4096 | 37.8 | 13.7 | 2.7× | – |
+| attention | 32 heads, ctx 512 | 1.73 | 0.13 | 12.9× | 32 |
+| rmsnorm | 4096 | 0.008 | 0.009 | 0.9× | – |
+| add | 4096 | 0.0008 | 0.015 | 0.1× | – |
+
+What these numbers mean is explained in
+[docs/KERNELS.md §8](../docs/KERNELS.md#8-performance-cpu-vs-gpu-and-why). In short:
+generation speed is set by how fast the weights can be read from memory, and the GPU's
+memory is about 5× faster than the CPU's.

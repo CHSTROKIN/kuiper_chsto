@@ -1,9 +1,28 @@
-CMakeFiles
-Makefile
+# IDE / editor
 .vscode/
-lib
-test/CMakeFiles/
-.cmake 
+.idea
+.cmake
+
+# Out-of-source build folders
 build/
-.idea 
+build_kernels/
+bin/
+lib
+
+# CMake-generated files (in-source builds)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+compile_commands.json
+Makefile
 Testing/
+_deps/
+*.cbp
+
+# Compiled programs
+cuda_capabilities
+demo/llama_infer
+test/test_llm
+test/build/
+test/CMakeFiles/
