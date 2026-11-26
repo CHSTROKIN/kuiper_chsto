@@ -111,6 +111,7 @@ Kuiper-Chsto is optimized for inference performance:
 
 ## Documentation
 
+- [项目基础 / Project Basics](docs/PROJECT_BASICS.md) - 中英文：权重位置、编译、运行、代码结构 (Chinese and English)
 - [Llama 3 Kernels Guide](docs/KERNELS.md) - Every Llama 3 kernel explained (CPU + CUDA), with CPU vs GPU performance analysis
 - [llama3_kernels/README.md](llama3_kernels/README.md) - How to build and run the kernel tests, benchmark and forward-pass demo
 - [Architecture Guide](docs/ARCHITECTURE.md) - Technical architecture overview
